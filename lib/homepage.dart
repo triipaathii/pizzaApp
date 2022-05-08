@@ -64,14 +64,51 @@ class _HomePageState extends State<HomePage> {
       backgroundColor: Colors.white,
       body: SafeArea(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
+            SizedBox(
+              height: mediaQueryHeight * 0.01,
+            ),
             Center(
               child: Image.asset(
                 "assets/images/pizza.png",
                 height: mediaQueryHeight * 0.5,
               ),
+            ),
+            const Text(
+              'Custom Pizza',
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 25,
+                letterSpacing: 1.2,
+                fontWeight: FontWeight.w800,
+              ),
+            ),
+            SizedBox(
+              height: mediaQueryHeight * 0.02,
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: mediaQueryWidth * 0.05,
+              ),
+              child: const Text(
+                'A large disc of dough, covered with tomato paste, then either'
+                'only grated cheese or pieces of mozzarella cheese, or other'
+                ' toppings like chopped vegetables, sausages, salami, etc. and '
+                'cheese, which is then baked together in a very hot oven, then '
+                'cut into slices so that one can eat it conveniently by taking '
+                'one wedge-shaped slice at a time. ',
+                textAlign: TextAlign.justify,
+                style:
+                    TextStyle(color: Colors.black, fontStyle: FontStyle.italic
+                        // fontSize: 25,
+                        // letterSpacing: 1.2,
+                        // fontWeight: FontWeight.w800,
+                        ),
+              ),
+            ),
+            SizedBox(
+              height: mediaQueryHeight * 0.09,
             ),
             InkWell(
               onTap: () {},
