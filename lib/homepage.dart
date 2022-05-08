@@ -10,6 +10,12 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  String pizzaCategoryValue = "veg";
+
+  List pizzaCategory = [
+    
+  ];
+
   @override
   Widget build(BuildContext context) {
     final mediaQueryHeight = MediaQuery.of(context).size.height;
@@ -62,104 +68,168 @@ class _HomePageState extends State<HomePage> {
       ),
       backgroundColor: Colors.white,
       body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            SizedBox(
-              height: mediaQueryHeight * 0.01,
-            ),
-            Center(
-              child: Image.asset(
-                "assets/images/pizza.png",
-                height: mediaQueryHeight * 0.5,
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              SizedBox(
+                height: mediaQueryHeight * 0.03,
               ),
-            ),
-            const Text(
-              'Custom Pizza',
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 25,
-                letterSpacing: 1.2,
-                fontWeight: FontWeight.w800,
+              Center(
+                child: Image.asset(
+                  "assets/images/pizza.png",
+                  height: mediaQueryHeight * 0.4,
+                ),
               ),
-            ),
-            SizedBox(
-              height: mediaQueryHeight * 0.02,
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: mediaQueryWidth * 0.05,
+              SizedBox(
+                height: mediaQueryHeight * 0.02,
               ),
-              child: const Text(
-                'A large disc of dough, covered with tomato paste, then either'
-                'only grated cheese or pieces of mozzarella cheese, or other'
-                ' toppings like chopped vegetables, sausages, salami, etc. and '
-                'cheese, which is then baked together in a very hot oven, then '
-                'cut into slices so that one can eat it conveniently by taking '
-                'one wedge-shaped slice at a time. ',
-                textAlign: TextAlign.justify,
-                style:
-                    TextStyle(color: Colors.black, fontStyle: FontStyle.italic
-                        // fontSize: 25,
-                        // letterSpacing: 1.2,
-                        // fontWeight: FontWeight.w800,
-                        ),
+              const Text(
+                'Custom Pizza',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 25,
+                  letterSpacing: 1.2,
+                  fontWeight: FontWeight.w800,
+                ),
               ),
-            ),
-            SizedBox(
-              height: mediaQueryHeight * 0.09,
-            ),
-            InkWell(
-              onTap: () {
-                showModalBottomSheet<void>(
-                    context: context,
-                    // elevation: 1,
-                    builder: (BuildContext ctxt) {
-                      return Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: <Widget>[
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: <Widget>[
-                              Text(
-                                "\u{212}"
+              SizedBox(
+                height: mediaQueryHeight * 0.02,
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: mediaQueryWidth * 0.05,
+                ),
+                child: const Text(
+                  'A large disc of dough, covered with tomato paste, then either'
+                  'only grated cheese or pieces of mozzarella cheese, or other'
+                  ' toppings like chopped vegetables, sausages, salami, etc. and '
+                  'cheese, which is then baked together in a very hot oven, then '
+                  'cut into slices so that one can eat it conveniently by taking '
+                  'one wedge-shaped slice at a time. ',
+                  textAlign: TextAlign.justify,
+                  style:
+                      TextStyle(color: Colors.black, fontStyle: FontStyle.italic
+                          // fontSize: 25,
+                          // letterSpacing: 1.2,
+                          // fontWeight: FontWeight.w800,
+                          ),
+                ),
+              ),
+              SizedBox(
+                height: mediaQueryHeight * 0.09,
+              ),
+              InkWell(
+                onTap: () {
+                  showModalBottomSheet<void>(
+                      context: context,
+                      // elevation: 1,
+                      builder: (BuildContext ctxt) {
+                        return Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: <Widget>[
+                            SingleChildScrollView(
+                              child: Padding(
+                                padding: const EdgeInsets.all(12),
+                                child: Column(
+                                  children: <Widget>[
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceAround,
+                                      children: <Widget>[
+                                        const Text(
+                                          "Category:",
+                                          style: TextStyle(fontSize: 18),
+                                        ),
+                                        DropdownButton(
+                                          value: pizzaCategoryValue,
+                                          items: ,
+                                          onChanged: (String? newValue){
+                                            setState(() {
+                                              pizzaCategoryValue = newValue!;
+                                            });
+                                          }
+                                        )
+                                      ],
+                                    )
+                                  ],
+                                ),
                               ),
-                              TextButton(
-                                  style: TextButton.styleFrom(
-                                    backgroundColor: Colors.red,
-                                    textStyle: TextStyle(color: Colors.white),
-                                  ),
-                                  onPressed: () {},
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: <Widget>[
+                                Padding(
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: mediaQueryWidth * 0.03,
+                                      vertical: mediaQueryHeight * 0.01),
                                   child: const Text(
-                                    "Add to Cart",
-                                  ))
-                            ],
-                          )
-                        ],
-                      );
-                    });
-              },
-              child: Container(
-                width: mediaQueryWidth * 0.5,
-                height: mediaQueryHeight * 0.075,
-                decoration: BoxDecoration(
-                    color: Colors.red, borderRadius: BorderRadius.circular(15)),
-                child: Center(
-                    child: Padding(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: mediaQueryWidth * 0.025,
-                      vertical: mediaQueryHeight * 0.01),
-                  child: const Text(
-                    "ORDER   NOW",
-                    style: TextStyle(
-                        fontSize: 20, letterSpacing: 1.5, color: Colors.white),
-                  ),
-                )),
-              ),
-            )
-          ],
+                                    "\u{20B9} 3021",
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 20),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: mediaQueryWidth * 0.03,
+                                      vertical: mediaQueryHeight * 0.02),
+                                  child: InkWell(
+                                    onTap: () {},
+                                    child: Container(
+                                      width: mediaQueryWidth * 0.35,
+                                      height: mediaQueryHeight * 0.06,
+                                      decoration: BoxDecoration(
+                                          color: Colors.red,
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
+                                      child: Center(
+                                          child: Padding(
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: mediaQueryWidth * 0.015,
+                                            vertical: mediaQueryHeight * 0.005),
+                                        child: const Text(
+                                          "Add to cart",
+                                          style: TextStyle(
+                                              fontSize: 20,
+                                              // letterSpacing: 1.5,
+                                              color: Colors.white),
+                                        ),
+                                      )),
+                                    ),
+                                  ),
+                                )
+                              ],
+                            )
+                          ],
+                        );
+                      });
+                },
+                child: Container(
+                  width: mediaQueryWidth * 0.5,
+                  height: mediaQueryHeight * 0.075,
+                  decoration: BoxDecoration(
+                      color: Colors.red,
+                      borderRadius: BorderRadius.circular(15)),
+                  child: Center(
+                      child: Padding(
+                    padding: EdgeInsets.symmetric(
+                        horizontal: mediaQueryWidth * 0.025,
+                        vertical: mediaQueryHeight * 0.01),
+                    child: const Text(
+                      "ORDER   NOW",
+                      style: TextStyle(
+                          fontSize: 20,
+                          letterSpacing: 1.5,
+                          color: Colors.white),
+                    ),
+                  )),
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
