@@ -1,6 +1,5 @@
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:pizza_app/order.dart';
 
 class HomePage extends StatefulWidget {
@@ -111,7 +110,37 @@ class _HomePageState extends State<HomePage> {
               height: mediaQueryHeight * 0.09,
             ),
             InkWell(
-              onTap: () {},
+              onTap: () {
+                showModalBottomSheet<void>(
+                    context: context,
+                    // elevation: 1,
+                    builder: (BuildContext ctxt) {
+                      return Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget>[
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: <Widget>[
+                              Text(
+                                "\u{212}"
+                              ),
+                              TextButton(
+                                  style: TextButton.styleFrom(
+                                    backgroundColor: Colors.red,
+                                    textStyle: TextStyle(color: Colors.white),
+                                  ),
+                                  onPressed: () {},
+                                  child: const Text(
+                                    "Add to Cart",
+                                  ))
+                            ],
+                          )
+                        ],
+                      );
+                    });
+              },
               child: Container(
                 width: mediaQueryWidth * 0.5,
                 height: mediaQueryHeight * 0.075,
