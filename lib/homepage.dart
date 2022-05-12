@@ -91,7 +91,7 @@ class HomePage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               SizedBox(
-                height: mediaQueryHeight * 0.03,
+                height: mediaQueryHeight * 0.02,
               ),
               Center(
                 child: Image.asset(
@@ -156,12 +156,41 @@ class _OrderNowState extends State<OrderNow> {
   String? _pizzaCategory;
   String? _pizzaCrust;
   String? _pizzaSize;
-  final _pizzaPrice = 0;
+  var _pizzaPrice = 0;
 
   @override
   Widget build(BuildContext context) {
     final mediaQueryHeight = MediaQuery.of(context).size.height;
     final mediaQueryWidth = MediaQuery.of(context).size.width;
+
+    if (_pizzaCategory != null && _pizzaCrust != null && _pizzaSize != null) {
+      setState(() {
+        _pizzaPrice = 0;
+      });
+      if (_pizzaCrust == 'Cheese Burst') {
+        setState(() {
+          _pizzaPrice += 100;
+        });
+      }
+      if (_pizzaCategory == 'Non-Veg') {
+        setState(() {
+          _pizzaPrice += 150;
+        });
+      }
+      if (_pizzaSize == 'Regular') {
+        setState(() {
+          _pizzaPrice += 130;
+        });
+      } else if (_pizzaSize == 'Large') {
+        setState(() {
+          _pizzaPrice += 390;
+        });
+      } else {
+        setState(() {
+          _pizzaPrice += 260;
+        });
+      }
+    }
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -306,7 +335,13 @@ class _OrderNowState extends State<OrderNow> {
                   horizontal: mediaQueryWidth * 0.03,
                   vertical: mediaQueryHeight * 0.02),
               child: InkWell(
-                onTap: () {},
+                onTap: () {
+                  if (_pizzaCategory != null &&
+                      _pizzaCrust != null &&
+                      _pizzaSize != null) {
+                        Navigator.pop(context);
+                      }
+                },
                 child: Container(
                   width: mediaQueryWidth * 0.35,
                   height: mediaQueryHeight * 0.06,
