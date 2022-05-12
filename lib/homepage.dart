@@ -2,19 +2,8 @@ import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:pizza_app/order.dart';
 
-class HomePage extends StatefulWidget {
-  HomePage({Key? key}) : super(key: key);
-
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  String pizzaCategoryValue = "veg";
-
-  List pizzaCategory = [
-    
-  ];
+class HomePage extends StatelessWidget {
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +44,7 @@ class _HomePageState extends State<HomePage> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => Order(),
+                          builder: (context) => const Order(),
                         ));
                   },
                   icon: const Icon(
@@ -67,6 +56,35 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
       backgroundColor: Colors.white,
+      bottomNavigationBar: InkWell(
+        onTap: () {
+          showModalBottomSheet<void>(
+              context: context,
+              // elevation: 1,
+              builder: (BuildContext ctxt) {
+                return const OrderNow();
+              });
+        },
+        child: Container(
+          // width: mediaQueryWidth * 0.4,
+          height: mediaQueryHeight * 0.075,
+          decoration: const BoxDecoration(
+            color: Colors.red,
+            // borderRadius: BorderRadius.circular(15)
+          ),
+          child: Center(
+              child: Padding(
+            padding: EdgeInsets.symmetric(
+                horizontal: mediaQueryWidth * 0.025,
+                vertical: mediaQueryHeight * 0.01),
+            child: const Text(
+              "ORDER   NOW",
+              style: TextStyle(
+                  fontSize: 20, letterSpacing: 1.5, color: Colors.white),
+            ),
+          )),
+        ),
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -119,119 +137,205 @@ class _HomePageState extends State<HomePage> {
               SizedBox(
                 height: mediaQueryHeight * 0.09,
               ),
-              InkWell(
-                onTap: () {
-                  showModalBottomSheet<void>(
-                      context: context,
-                      // elevation: 1,
-                      builder: (BuildContext ctxt) {
-                        return Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: <Widget>[
-                            SingleChildScrollView(
-                              child: Padding(
-                                padding: const EdgeInsets.all(12),
-                                child: Column(
-                                  children: <Widget>[
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceAround,
-                                      children: <Widget>[
-                                        const Text(
-                                          "Category:",
-                                          style: TextStyle(fontSize: 18),
-                                        ),
-                                        DropdownButton(
-                                          value: pizzaCategoryValue,
-                                          items: ,
-                                          onChanged: (String? newValue){
-                                            setState(() {
-                                              pizzaCategoryValue = newValue!;
-                                            });
-                                          }
-                                        )
-                                      ],
-                                    )
-                                  ],
-                                ),
-                              ),
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: <Widget>[
-                                Padding(
-                                  padding: EdgeInsets.symmetric(
-                                      horizontal: mediaQueryWidth * 0.03,
-                                      vertical: mediaQueryHeight * 0.01),
-                                  child: const Text(
-                                    "\u{20B9} 3021",
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 20),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.symmetric(
-                                      horizontal: mediaQueryWidth * 0.03,
-                                      vertical: mediaQueryHeight * 0.02),
-                                  child: InkWell(
-                                    onTap: () {},
-                                    child: Container(
-                                      width: mediaQueryWidth * 0.35,
-                                      height: mediaQueryHeight * 0.06,
-                                      decoration: BoxDecoration(
-                                          color: Colors.red,
-                                          borderRadius:
-                                              BorderRadius.circular(10)),
-                                      child: Center(
-                                          child: Padding(
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: mediaQueryWidth * 0.015,
-                                            vertical: mediaQueryHeight * 0.005),
-                                        child: const Text(
-                                          "Add to cart",
-                                          style: TextStyle(
-                                              fontSize: 20,
-                                              // letterSpacing: 1.5,
-                                              color: Colors.white),
-                                        ),
-                                      )),
-                                    ),
-                                  ),
-                                )
-                              ],
-                            )
-                          ],
-                        );
-                      });
-                },
-                child: Container(
-                  width: mediaQueryWidth * 0.5,
-                  height: mediaQueryHeight * 0.075,
-                  decoration: BoxDecoration(
-                      color: Colors.red,
-                      borderRadius: BorderRadius.circular(15)),
-                  child: Center(
-                      child: Padding(
-                    padding: EdgeInsets.symmetric(
-                        horizontal: mediaQueryWidth * 0.025,
-                        vertical: mediaQueryHeight * 0.01),
-                    child: const Text(
-                      "ORDER   NOW",
-                      style: TextStyle(
-                          fontSize: 20,
-                          letterSpacing: 1.5,
-                          color: Colors.white),
-                    ),
-                  )),
-                ),
-              )
             ],
           ),
         ),
       ),
+    );
+  }
+}
+
+class OrderNow extends StatefulWidget {
+  const OrderNow({Key? key}) : super(key: key);
+
+  @override
+  State<OrderNow> createState() => _OrderNowState();
+}
+
+class _OrderNowState extends State<OrderNow> {
+  String? _pizzaCategory;
+  String? _pizzaCrust;
+  String? _pizzaSize;
+  final _pizzaPrice = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    final mediaQueryHeight = MediaQuery.of(context).size.height;
+    final mediaQueryWidth = MediaQuery.of(context).size.width;
+
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: <Widget>[
+        SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(12),
+            child: Column(
+              children: <Widget>[
+                Padding(
+                  padding:
+                      EdgeInsets.symmetric(horizontal: mediaQueryWidth * 0.025),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      const Text(
+                        "Category:",
+                        style: TextStyle(fontSize: 18),
+                      ),
+                      DropdownButton<String>(
+                        focusColor: Colors.black,
+                        value: _pizzaCategory,
+                        //elevation: 5,
+                        style:
+                            const TextStyle(color: Colors.black, fontSize: 18),
+                        iconEnabledColor: Colors.black,
+                        items: <String>['Veg', 'Non-Veg']
+                            .map<DropdownMenuItem<String>>((String value) {
+                          return DropdownMenuItem<String>(
+                            value: value,
+                            child: Text(value,
+                                style: const TextStyle(fontSize: 18)),
+                          );
+                        }).toList(),
+                        hint: const Text("Select Category",
+                            style: TextStyle(fontSize: 18)),
+                        onChanged: (String? value) {
+                          setState(() {
+                            _pizzaCategory = value;
+                            print(_pizzaCategory);
+                          });
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding:
+                      EdgeInsets.symmetric(horizontal: mediaQueryWidth * 0.025),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      const Text(
+                        "Crust:",
+                        style: TextStyle(fontSize: 18),
+                      ),
+                      DropdownButton<String>(
+                        focusColor: Colors.black,
+                        value: _pizzaCrust,
+                        //elevation: 5,
+                        style:
+                            const TextStyle(color: Colors.black, fontSize: 18),
+                        iconEnabledColor: Colors.black,
+                        items: <String>['Hand-Tossed', 'Cheese Burst']
+                            .map<DropdownMenuItem<String>>((String value) {
+                          return DropdownMenuItem<String>(
+                            value: value,
+                            child: Text(value,
+                                style: const TextStyle(fontSize: 18)),
+                          );
+                        }).toList(),
+                        hint: const Text("Select Crust",
+                            style: TextStyle(fontSize: 18)),
+                        onChanged: (String? value) {
+                          setState(() {
+                            _pizzaCrust = value;
+                            print(_pizzaCrust);
+                          });
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding:
+                      EdgeInsets.symmetric(horizontal: mediaQueryWidth * 0.025),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      const Text(
+                        "Size:",
+                        style: TextStyle(fontSize: 18),
+                      ),
+                      DropdownButton<String>(
+                        focusColor: Colors.black,
+                        value: _pizzaSize,
+                        //elevation: 5,
+                        style:
+                            const TextStyle(color: Colors.black, fontSize: 18),
+                        iconEnabledColor: Colors.black,
+                        items: <String>['Regular', 'Medium', 'Large']
+                            .map<DropdownMenuItem<String>>((String value) {
+                          return DropdownMenuItem<String>(
+                            value: value,
+                            child: Text(value,
+                                style: const TextStyle(fontSize: 18)),
+                          );
+                        }).toList(),
+                        hint: const Text("Select Size",
+                            style: TextStyle(fontSize: 18)),
+                        onChanged: (String? value) {
+                          setState(() {
+                            _pizzaSize = value;
+                            print(_pizzaSize);
+                          });
+                        },
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            ),
+          ),
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            Padding(
+              padding: EdgeInsets.symmetric(
+                  horizontal: mediaQueryWidth * 0.03,
+                  vertical: mediaQueryHeight * 0.01),
+              child: Text(
+                "\u{20B9} $_pizzaPrice",
+                style:
+                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(
+                  horizontal: mediaQueryWidth * 0.03,
+                  vertical: mediaQueryHeight * 0.02),
+              child: InkWell(
+                onTap: () {},
+                child: Container(
+                  width: mediaQueryWidth * 0.35,
+                  height: mediaQueryHeight * 0.06,
+                  decoration: BoxDecoration(
+                      color: (_pizzaCategory != null &&
+                              _pizzaCrust != null &&
+                              _pizzaSize != null)
+                          ? Colors.red
+                          : Colors.grey,
+                      borderRadius: BorderRadius.circular(10)),
+                  child: Center(
+                      child: Padding(
+                    padding: EdgeInsets.symmetric(
+                        horizontal: mediaQueryWidth * 0.015,
+                        vertical: mediaQueryHeight * 0.005),
+                    child: const Text(
+                      "Add to cart",
+                      style: TextStyle(
+                          fontSize: 20,
+                          // letterSpacing: 1.5,
+                          color: Colors.white),
+                    ),
+                  )),
+                ),
+              ),
+            )
+          ],
+        )
+      ],
     );
   }
 }
