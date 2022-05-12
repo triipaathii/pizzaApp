@@ -1,5 +1,6 @@
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
+import 'package:pizza_app/model.dart';
 import 'package:pizza_app/order.dart';
 
 class HomePage extends StatelessWidget {
@@ -339,8 +340,10 @@ class _OrderNowState extends State<OrderNow> {
                   if (_pizzaCategory != null &&
                       _pizzaCrust != null &&
                       _pizzaSize != null) {
-                        Navigator.pop(context);
-                      }
+                    PizzaModel(
+                        _pizzaCategory, _pizzaSize, _pizzaCrust, _pizzaPrice);
+                    Navigator.pop(context);
+                  }
                 },
                 child: Container(
                   width: mediaQueryWidth * 0.35,
