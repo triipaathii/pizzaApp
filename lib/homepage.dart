@@ -63,7 +63,9 @@ class HomePage extends StatelessWidget {
               context: context,
               // elevation: 1,
               builder: (BuildContext ctxt) {
-                return OrderNow();
+                return Wrap(
+                  children: <Widget>[OrderNow()],
+                );
               });
         },
         child: Container(
@@ -215,6 +217,7 @@ class _OrderNowState extends State<OrderNow> {
                         style: TextStyle(fontSize: 18),
                       ),
                       DropdownButton<String>(
+                        alignment: Alignment.topRight,
                         focusColor: Colors.black,
                         value: _pizzaCategory,
                         //elevation: 5,
@@ -225,8 +228,10 @@ class _OrderNowState extends State<OrderNow> {
                             .map<DropdownMenuItem<String>>((String value) {
                           return DropdownMenuItem<String>(
                             value: value,
-                            child: Text(value,
-                                style: const TextStyle(fontSize: 18)),
+                            child: Text(
+                              value,
+                              style: const TextStyle(fontSize: 18),
+                            ),
                           );
                         }).toList(),
                         hint: const Text("Select Category",
@@ -252,6 +257,7 @@ class _OrderNowState extends State<OrderNow> {
                         style: TextStyle(fontSize: 18),
                       ),
                       DropdownButton<String>(
+                        alignment: Alignment.topRight,
                         focusColor: Colors.black,
                         value: _pizzaCrust,
                         //elevation: 5,
@@ -289,6 +295,7 @@ class _OrderNowState extends State<OrderNow> {
                         style: TextStyle(fontSize: 18),
                       ),
                       DropdownButton<String>(
+                        alignment: Alignment.topRight,
                         focusColor: Colors.black,
                         value: _pizzaSize,
                         //elevation: 5,
