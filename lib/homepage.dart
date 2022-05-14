@@ -1,7 +1,7 @@
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:pizza_app/model.dart';
-import 'package:pizza_app/order.dart';
+import 'package:pizza_app/cart.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -45,7 +45,7 @@ class HomePage extends StatelessWidget {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const Order(),
+                          builder: (context) => const Cart(),
                         ));
                   },
                   icon: const Icon(
@@ -63,7 +63,7 @@ class HomePage extends StatelessWidget {
               context: context,
               // elevation: 1,
               builder: (BuildContext ctxt) {
-                return const OrderNow();
+                return OrderNow();
               });
         },
         child: Container(
@@ -147,7 +147,9 @@ class HomePage extends StatelessWidget {
 }
 
 class OrderNow extends StatefulWidget {
-  const OrderNow({Key? key}) : super(key: key);
+  OrderNow({Key? key}) : super(key: key);
+
+  final List<PizzaModel> orderList = [];
 
   @override
   State<OrderNow> createState() => _OrderNowState();
@@ -340,8 +342,16 @@ class _OrderNowState extends State<OrderNow> {
                   if (_pizzaCategory != null &&
                       _pizzaCrust != null &&
                       _pizzaSize != null) {
-                    PizzaModel(
-                        _pizzaCategory, _pizzaSize, _pizzaCrust, _pizzaPrice);
+                    final newOrder = PizzaModel(
+                        pizzaCategory: _pizzaCategory,
+                        pizzaSize: _pizzaSize,
+                        pizzaCrust: _pizzaCrust,
+                        pizzaPrice: _pizzaPrice);
+
+                    setState(() {
+                      OrderNow().orderList.add(newOrder);
+                    });
+                    print(OrderNow().orderList);
                     Navigator.pop(context);
                   }
                 },
