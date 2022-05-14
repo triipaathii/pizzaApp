@@ -8,6 +8,8 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    // screen height and width
     final mediaQueryHeight = MediaQuery.of(context).size.height;
     final mediaQueryWidth = MediaQuery.of(context).size.width;
 
@@ -29,6 +31,8 @@ class HomePage extends StatelessWidget {
           ),
         ),
         actions: <Widget>[
+
+          // Order Page Icon
           Padding(
             padding: EdgeInsets.symmetric(
               horizontal: mediaQueryWidth * 0.025,
@@ -57,8 +61,13 @@ class HomePage extends StatelessWidget {
         ],
       ),
       backgroundColor: Colors.white,
+      
+      //Order Now button
       bottomNavigationBar: InkWell(
         onTap: () {
+
+          // for making an order
+          // Section where you give details of the order
           showModalBottomSheet<void>(
               context: context,
               // elevation: 1,
@@ -96,6 +105,8 @@ class HomePage extends StatelessWidget {
               SizedBox(
                 height: mediaQueryHeight * 0.02,
               ),
+
+              // Pizza Image
               Center(
                 child: Image.asset(
                   "assets/images/pizza.png",
@@ -105,6 +116,8 @@ class HomePage extends StatelessWidget {
               SizedBox(
                 height: mediaQueryHeight * 0.02,
               ),
+
+              // Pizza Text
               const Text(
                 'Custom Pizza',
                 style: TextStyle(
@@ -117,6 +130,8 @@ class HomePage extends StatelessWidget {
               SizedBox(
                 height: mediaQueryHeight * 0.02,
               ),
+
+              // Pizza Description
               Padding(
                 padding: EdgeInsets.symmetric(
                   horizontal: mediaQueryWidth * 0.05,
@@ -148,6 +163,9 @@ class HomePage extends StatelessWidget {
   }
 }
 
+
+// For making order and giving pizza details
+
 class OrderNow extends StatefulWidget {
   OrderNow({Key? key}) : super(key: key);
 
@@ -168,6 +186,7 @@ class _OrderNowState extends State<OrderNow> {
     final mediaQueryHeight = MediaQuery.of(context).size.height;
     final mediaQueryWidth = MediaQuery.of(context).size.width;
 
+    // To determine pizza price on the basis of the details provided
     if (_pizzaCategory != null && _pizzaCrust != null && _pizzaSize != null) {
       setState(() {
         _pizzaPrice = 0;
@@ -206,6 +225,8 @@ class _OrderNowState extends State<OrderNow> {
             padding: const EdgeInsets.all(12),
             child: Column(
               children: <Widget>[
+
+                // Drop down menu for selecting pizza category
                 Padding(
                   padding:
                       EdgeInsets.symmetric(horizontal: mediaQueryWidth * 0.025),
@@ -246,6 +267,8 @@ class _OrderNowState extends State<OrderNow> {
                     ],
                   ),
                 ),
+                
+                // Drop down menu for selecting pizza crust
                 Padding(
                   padding:
                       EdgeInsets.symmetric(horizontal: mediaQueryWidth * 0.025),
@@ -284,6 +307,8 @@ class _OrderNowState extends State<OrderNow> {
                     ],
                   ),
                 ),
+                
+                // Drop down menu for selecting pizza size
                 Padding(
                   padding:
                       EdgeInsets.symmetric(horizontal: mediaQueryWidth * 0.025),
@@ -334,12 +359,17 @@ class _OrderNowState extends State<OrderNow> {
               padding: EdgeInsets.symmetric(
                   horizontal: mediaQueryWidth * 0.03,
                   vertical: mediaQueryHeight * 0.01),
-              child: Text(
-                "\u{20B9} $_pizzaPrice",
-                style:
-                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-              ),
-            ),
+              child: 
+
+              // TO show pizza price
+                Text(
+                    "\u{20B9} $_pizzaPrice",
+                    style:
+                        const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                  ),
+                ),
+
+            // "Add to cart" button
             Padding(
               padding: EdgeInsets.symmetric(
                   horizontal: mediaQueryWidth * 0.03,

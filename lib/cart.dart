@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:pizza_app/model.dart';
 
 class Cart extends StatelessWidget {
   const Cart({Key? key}) : super(key: key);
@@ -10,123 +9,125 @@ class Cart extends StatelessWidget {
     final mediaQueryWidth = MediaQuery.of(context).size.width;
 
     final orderList = [
-      {
-        'category': "Veg",
-        'crust': "Hand-Tossed",
-        'size': "Regular",
-        'price': 130,
-        'count': 2
-      },
-      {
-        'category': "Non-Veg",
-        'crust': "Hand-Tossed",
-        'size': "Regular",
-        'price': 130,
-        'count': 1
-      },
-      {
-        'category': "Veg",
-        'crust': "Hand-Tossed",
-        'size': "Large",
-        'price': 390,
-        'count': 1
-      },
-      {
-        'category': "Veg",
-        'crust': "Cheese-Burst",
-        'size': "Large",
-        'price': 490,
-        'count': 1
-      },
-      {
-        'category': "Veg",
-        'crust': "Hand-Tossed",
-        'size': "Regular",
-        'price': 130,
-        'count': 2
-      },
-      {
-        'category': "Non-Veg",
-        'crust': "Hand-Tossed",
-        'size': "Regular",
-        'price': 130,
-        'count': 1
-      },
-      {
-        'category': "Veg",
-        'crust': "Hand-Tossed",
-        'size': "Large",
-        'price': 390,
-        'count': 1
-      },
-      {
-        'category': "Veg",
-        'crust': "Cheese-Burst",
-        'size': "Large",
-        'price': 490,
-        'count': 1
-      },
-      {
-        'category': "Veg",
-        'crust': "Hand-Tossed",
-        'size': "Regular",
-        'price': 130,
-        'count': 2
-      },
-      {
-        'category': "Non-Veg",
-        'crust': "Hand-Tossed",
-        'size': "Regular",
-        'price': 130,
-        'count': 1
-      },
-      {
-        'category': "Veg",
-        'crust': "Hand-Tossed",
-        'size': "Large",
-        'price': 390,
-        'count': 1
-      },
-      {
-        'category': "Veg",
-        'crust': "Cheese-Burst",
-        'size': "Large",
-        'price': 490,
-        'count': 1
-      },
-      {
-        'category': "Veg",
-        'crust': "Hand-Tossed",
-        'size': "Regular",
-        'price': 130,
-        'count': 2
-      },
-      {
-        'category': "Non-Veg",
-        'crust': "Hand-Tossed",
-        'size': "Regular",
-        'price': 130,
-        'count': 1
-      },
-      {
-        'category': "Veg",
-        'crust': "Hand-Tossed",
-        'size': "Large",
-        'price': 390,
-        'count': 1
-      },
-      {
-        'category': "Veg",
-        'crust': "Cheese-Burst",
-        'size': "Large",
-        'price': 490,
-        'count': 1
-      }
+      // {
+      //   'category': "Veg",
+      //   'crust': "Hand-Tossed",
+      //   'size': "Regular",
+      //   'price': 130,
+      //   'count': 2
+      // },
+      // {
+      //   'category': "Non-Veg",
+      //   'crust': "Hand-Tossed",
+      //   'size': "Regular",
+      //   'price': 130,
+      //   'count': 1
+      // },
+      // {
+      //   'category': "Veg",
+      //   'crust': "Hand-Tossed",
+      //   'size': "Large",
+      //   'price': 390,
+      //   'count': 1
+      // },
+      // {
+      //   'category': "Veg",
+      //   'crust': "Cheese-Burst",
+      //   'size': "Large",
+      //   'price': 490,
+      //   'count': 1
+      // },
+      // {
+      //   'category': "Veg",
+      //   'crust': "Hand-Tossed",
+      //   'size': "Regular",
+      //   'price': 130,
+      //   'count': 2
+      // },
+      // {
+      //   'category': "Non-Veg",
+      //   'crust': "Hand-Tossed",
+      //   'size': "Regular",
+      //   'price': 130,
+      //   'count': 1
+      // },
+      // {
+      //   'category': "Veg",
+      //   'crust': "Hand-Tossed",
+      //   'size': "Large",
+      //   'price': 390,
+      //   'count': 1
+      // },
+      // {
+      //   'category': "Veg",
+      //   'crust': "Cheese-Burst",
+      //   'size': "Large",
+      //   'price': 490,
+      //   'count': 1
+      // },
+      // {
+      //   'category': "Veg",
+      //   'crust': "Hand-Tossed",
+      //   'size': "Regular",
+      //   'price': 130,
+      //   'count': 2
+      // },
+      // {
+      //   'category': "Non-Veg",
+      //   'crust': "Hand-Tossed",
+      //   'size': "Regular",
+      //   'price': 130,
+      //   'count': 1
+      // },
+      // {
+      //   'category': "Veg",
+      //   'crust': "Hand-Tossed",
+      //   'size': "Large",
+      //   'price': 390,
+      //   'count': 1
+      // },
+      // {
+      //   'category': "Veg",
+      //   'crust': "Cheese-Burst",
+      //   'size': "Large",
+      //   'price': 490,
+      //   'count': 1
+      // },
+      // {
+      //   'category': "Veg",
+      //   'crust': "Hand-Tossed",
+      //   'size': "Regular",
+      //   'price': 130,
+      //   'count': 2
+      // },
+      // {
+      //   'category': "Non-Veg",
+      //   'crust': "Hand-Tossed",
+      //   'size': "Regular",
+      //   'price': 130,
+      //   'count': 1
+      // },
+      // {
+      //   'category': "Veg",
+      //   'crust': "Hand-Tossed",
+      //   'size': "Large",
+      //   'price': 390,
+      //   'count': 1
+      // },
+      // {
+      //   'category': "Veg",
+      //   'crust': "Cheese-Burst",
+      //   'size': "Large",
+      //   'price': 490,
+      //   'count': 1
+      // }
     ];
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
+
+        // Back button
         leading: IconButton(
           onPressed: () {
             Navigator.pop(context);
@@ -136,6 +137,8 @@ class Cart extends StatelessWidget {
             color: Colors.black,
           ),
         ),
+
+        // "Cart" text
         title: Padding(
           padding: EdgeInsets.symmetric(
             horizontal: mediaQueryWidth * 0.0,
@@ -152,20 +155,23 @@ class Cart extends StatelessWidget {
       ),
       body: SafeArea(
           child: orderList.isEmpty
-              ? Column(
-                  children: <Widget>[
-                    Image.asset(
-                      "assets/images/order-delivery.png",
-                      height: mediaQueryHeight * 0.1,
-                      color: Colors.grey.shade300,
-                    ),
-                    Text(
-                      "No Orders yet",
-                      style: TextStyle(
+              ? Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Image.asset(
+                        "assets/images/order-delivery.png",
+                        height: mediaQueryHeight * 0.1,
                         color: Colors.grey.shade300,
                       ),
-                    )
-                  ],
+                      Text(
+                        "No Orders yet",
+                        style: TextStyle(
+                          color: Colors.grey.shade300,
+                        ),
+                      )
+                    ],
+                  ),
                 )
               : Padding(
                   padding: const EdgeInsets.symmetric(
